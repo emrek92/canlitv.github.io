@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.channel-list {
+    width: 300px;
+    background: #2a2a2a;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #3a3a3a;
+    color: #fff;
+}
+
+#channels {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.channel-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #3a3a3a;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.channel-item:hover {
+    background: #4a4a4a;
+}
+
+.channel-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+.player-container {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#videoPlayer {
+    width: 100%;
+    max-height: 70vh;
+    background: #000;
+    border-radius: 10px;
+}
+
+.channel-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .channel-list {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/* EPG Styles */
+.epg-container {
+    margin-top: 20px;
+    background: #2a2a2a;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.epg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.epg-header h3 {
+    margin: 0;
+    color: #fff;
+}
+
+.epg-date input {
+    background: #3a3a3a;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.epg-content {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.program-item {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #3a3a3a;
+    transition: background 0.3s;
+}
+
+.program-item:hover {
+    background: #3a3a3a;
+}
+
+.program-time {
+    min-width: 100px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.program-title {
+    flex: 1;
+}
+
+.program-description {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.current-program {
+    background: #3a3a3a;
+    border-left: 3px solid #4CAF50;
+}
+
+.epg-loading {
+    text-align: center;
+    padding: 20px;
+    color: #aaa;
+}
+
+/* Scrollbar stilleri */
+.epg-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.epg-content::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+
+.epg-content::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 4px;
+}
+
+.epg-content::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
+}
+
+.channel-group {
+    margin-bottom: 20px;
+}
+
+.group-header {
+    color: #4CAF50;
+    padding: 10px;
+    margin: 10px 0;
+    border-bottom: 1px solid #4a4a4a;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.channel-item {
+    margin: 5px 0;
+}
+
+/* Arama yapıldığında kategorileri gizle */
+.searching .group-header {
+    display: none;
+}
+
+.searching .channel-group {
+    margin-bottom: 0;
+}
+
+.category-filter {
+    margin-bottom: 15px;
+}
+
+#categorySelect {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #3a3a3a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#categorySelect:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #4CAF50;
+}
+
+#categorySelect option {
+    background: #2a2a2a;
+    color: #fff;
+    padding: 10px;
+}
+
+/* Seçili kategoriyi vurgula */
+.group-header.active {
+    color: #4CAF50;
+    border-bottom-color: #4CAF50;
+}
+
+/* Yükleme göstergesi stilleri */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    height: 200px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #3a3a3a;
+    border-top: 4px solid #4CAF50;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+.loading-container p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.error-container button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.error-container button:hover {
+    background: #45a049;
+} 
